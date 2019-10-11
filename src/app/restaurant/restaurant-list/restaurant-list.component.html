@@ -1,5 +1,8 @@
 <div style="padding: 30px;">
-    <table [dataSource]="restaurants" class="mat-elevation-z8" mat-table matSort style="width: 100%;">
+    <button color="primary" mat-flat-button>
+        <i class="fa fa-plus" aria-hidden="true"></i> Add restaurant
+    </button>
+    <table [dataSource]="restaurants" class="mat-elevation-z8" mat-table matSort style="margin-top: 10px; width: 100%;">
         <ng-container matColumnDef="edit">
             <th *matHeaderCellDef mat-header-cell></th>
             <td *matCellDef="let restaurant" mat-cell>
