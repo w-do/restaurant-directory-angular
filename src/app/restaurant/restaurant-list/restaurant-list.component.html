@@ -1,0 +1,45 @@
+<div style="padding: 30px;">
+    <table [dataSource]="restaurants" class="mat-elevation-z8" mat-table matSort style="width: 100%;">
+        <ng-container matColumnDef="edit">
+            <th *matHeaderCellDef mat-header-cell></th>
+            <td *matCellDef="let restaurant" mat-cell>
+                <button mat-icon-button>
+                    <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+                </button>
+            </td>
+        </ng-container>
+        <ng-container matColumnDef="tried">
+            <th *matHeaderCellDef mat-header-cell mat-sort-header>Tried</th>
+            <td *matCellDef="let restaurant" mat-cell>
+                <i *ngIf="restaurant.tried" class="fa fa-check"></i>
+            </td>
+        </ng-container>
+        <ng-container matColumnDef="name">
+            <th *matHeaderCellDef mat-header-cell mat-sort-header>Name</th>
+            <td *matCellDef="let restaurant" mat-cell>
+                {{restaurant.name}}
+                <a *ngIf="restaurant.yelp" color="primary" href="{{restaurant.yelp}}" mat-icon-button>
+                    <i class="fa fa-yelp"></i>
+                </a>
+            </td>
+        </ng-container>
+        <ng-container matColumnDef="cuisine">
+            <th *matHeaderCellDef mat-header-cell mat-sort-header>Cuisine</th>
+            <td *matCellDef="let restaurant" mat-cell></td>
+        </ng-container>
+        <ng-container matColumnDef="parkingLot">
+            <th *matHeaderCellDef mat-header-cell mat-sort-header>Parking Lot</th>
+            <td *matCellDef="let restaurant" mat-cell>
+                <span *ngIf="restaurant.parkingLot === 0">no</span>
+                <span *ngIf="restaurant.parkingLot === 1">yes</span>
+                <span *ngIf="restaurant.parkingLot === 2">?</span>
+            </td>
+        </ng-container>
+        <ng-container matColumnDef="notes">
+            <th *matHeaderCellDef mat-header-cell mat-sort-header>Notes</th>
+            <td *matCellDef="let restaurant" mat-cell>{{restaurant.notes}}</td>
+        </ng-container>
+        <tr *matHeaderRowDef="columns" mat-header-row></tr>
+        <tr *matRowDef="let row; columns: columns" mat-row></tr>
+    </table>
+</div>
