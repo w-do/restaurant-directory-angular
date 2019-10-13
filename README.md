@@ -1,3 +1,3 @@
 # Christina's restaurant directory
 
-Based on an excel sheet my sister made to keep track of restaurants in the metro Detroit area.
+An excel sheet my sister was using to keep track of restaurants in the metro Detroit area, which I decided to turn into a web app. This is the frontend in Angular 8.

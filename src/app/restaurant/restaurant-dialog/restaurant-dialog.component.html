@@ -1,6 +1,43 @@
-<h1 mat-dialog-title>Restaurant name</h1>
-<div mat-dialog-content>
-    content here
+<h1 *ngIf="id" mat-dialog-title>{{restaurant.name}}</h1>
+<h1 *ngIf="!id" mat-dialog-title>New Restaurant</h1>
+<div>
+    <mat-form-field>
+        <input [(ngModel)]="restaurant.name" matInput placeholder="Name">
+    </mat-form-field>
+    <mat-form-field>
+        <mat-label>City</mat-label>
+        <mat-select [(ngModel)]="restaurant.cityId">
+            <mat-option [value]="null">--</mat-option>
+            <mat-option *ngFor="let city of cities" [value]="city.id">
+                {{city.name}}
+            </mat-option>
+        </mat-select>
+    </mat-form-field>
+    <mat-form-field>
+        <mat-label>Cuisine</mat-label>
+        <mat-select [(ngModel)]="restaurant.cuisineIds" multiple>
+            <mat-option *ngFor="let cuisine of cuisines" [value]="cuisine.id">
+                {{cuisine.name}}
+            </mat-option>
+        </mat-select>
+    </mat-form-field>
+    <mat-form-field>
+        <mat-label>Parking lot</mat-label>
+        <mat-select>
+            <mat-option [value]="2">?</mat-option>
+            <mat-option [value]="1">Yes</mat-option>
+            <mat-option [value]="0">No</mat-option>
+        </mat-select>
+    </mat-form-field>
+    <div style="margin-bottom: 10px; margin-top: 10px;">
+        <mat-checkbox [(ngModel)]="restaurant.tried">Tried</mat-checkbox>
+    </div>
+    <mat-form-field>
+        <input [(ngModel)]="restaurant.yelp" matInput placeholder="Yelp">
+    </mat-form-field>
+    <mat-form-field>
+        <textarea matInput placeholder="Notes" rows="4"></textarea>
+    </mat-form-field>
 </div>
 <div mat-dialog-actions>
     <button (click)="dialogRef.close()" mat-button>Cancel</button>

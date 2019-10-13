@@ -37,7 +37,7 @@ export class RestaurantDialogComponent implements OnInit {
     }
 
     save() {
-        console.log(this.cities);
-        console.log(this.cuisines);
+        this.restaurantService.addRestaurant(this.restaurant)
+            .subscribe(() => this.dialogRef.close(true));
     }
 }

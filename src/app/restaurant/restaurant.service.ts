@@ -16,14 +16,19 @@ export class RestaurantService {
         this.url = appConfig.get('apiUrl') + '/restaurant';
     }
 
+    addRestaurant(restaurant: RestaurantEdit): Observable<Response> {
+        return this.http.post(this.url, restaurant)
+            .pipe(
+                map(response => <Response>response),
+                catchError(this.throw)
+            );
+    }
+
     getRestaurant(id: number): Observable<RestaurantEdit> {
         return this.http.get(this.url + '/' + id)
             .pipe(
                 map(response => <RestaurantEdit>response),
-                catchError(response => {
-                    console.log(response);
-                    return throwError(response);
-                })
+                catchError(this.throw)
             );
     }
 
@@ -31,10 +36,12 @@ export class RestaurantService {
         return this.http.get(this.url)
             .pipe(
                 map(response => <RestaurantView[]>response),
-                catchError(response => {
-                    console.log(response);
-                    return throwError(response);
-                })
+                catchError(this.throw)
             );
+    }
+
+    private throw(response: any): Observable<never> {
+        console.log(response);
+        return throwError(response);
     }
 }

@@ -1,12 +1,12 @@
 <div style="padding: 30px;">
-    <button (click)="addRestaurant()" color="primary" mat-flat-button>
+    <button (click)="openDialog(null)" color="primary" mat-flat-button>
         <i class="fa fa-plus" aria-hidden="true"></i> Add restaurant
     </button>
     <table [dataSource]="restaurants" class="mat-elevation-z8" mat-table matSort style="margin-top: 10px; width: 100%;">
         <ng-container matColumnDef="edit">
             <th *matHeaderCellDef mat-header-cell></th>
             <td *matCellDef="let restaurant" mat-cell>
-                <button mat-icon-button>
+                <button (click)="openDialog(restaurant.id)" mat-icon-button>
                     <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
                 </button>
             </td>
@@ -25,6 +25,10 @@
                     <i class="fa fa-yelp"></i>
                 </a>
             </td>
+        </ng-container>
+        <ng-container matColumnDef="city">
+            <th *matHeaderCellDef mat-header-cell mat-sort-header>City</th>
+            <td *matCellDef="let restaurant" mat-cell>{{restaurant.city}}</td>
         </ng-container>
         <ng-container matColumnDef="cuisine">
             <th *matHeaderCellDef mat-header-cell mat-sort-header>Cuisine</th>

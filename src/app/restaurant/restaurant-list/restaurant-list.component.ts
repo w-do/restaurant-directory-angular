@@ -18,10 +18,14 @@ export class RestaurantListComponent implements OnInit {
 
     constructor(private dialog: MatDialog,
         private restaurantService: RestaurantService) {
-        this.columns = ['edit', 'tried', 'name', 'cuisine', 'parkingLot', 'notes'];
+        this.columns = ['edit', 'tried', 'name', 'city', 'cuisine', 'parkingLot', 'notes'];
     }
 
     ngOnInit() {
+        this.getRestaurants();
+    }
+
+    getRestaurants() {
         this.restaurantService.getRestaurants()
             .subscribe(restaurants => {
                 this.restaurants = new MatTableDataSource(restaurants);
@@ -29,10 +33,16 @@ export class RestaurantListComponent implements OnInit {
             });
     }
 
-    addRestaurant() {
-        this.dialog.open(RestaurantDialogComponent, {
-            width: '250px',
-            data: null
+    openDialog(id: number) {
+        let dialogRef = this.dialog.open(RestaurantDialogComponent, {
+            width: '400px',
+            data: id
+        });
+
+        dialogRef.afterClosed().subscribe(result => {
+            if (result) {
+                this.getRestaurants();
+            }
         });
     }
 }
