@@ -1,5 +1,5 @@
 <div style="padding: 30px;">
-    <button color="primary" mat-flat-button>
+    <button (click)="addRestaurant()" color="primary" mat-flat-button>
         <i class="fa fa-plus" aria-hidden="true"></i> Add restaurant
     </button>
     <table [dataSource]="restaurants" class="mat-elevation-z8" mat-table matSort style="margin-top: 10px; width: 100%;">
@@ -28,7 +28,7 @@
         </ng-container>
         <ng-container matColumnDef="cuisine">
             <th *matHeaderCellDef mat-header-cell mat-sort-header>Cuisine</th>
-            <td *matCellDef="let restaurant" mat-cell></td>
+            <td *matCellDef="let restaurant" mat-cell>{{restaurant.cuisines}}</td>
         </ng-container>
         <ng-container matColumnDef="parkingLot">
             <th *matHeaderCellDef mat-header-cell mat-sort-header>Parking Lot</th>

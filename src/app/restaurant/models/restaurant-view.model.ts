@@ -1,9 +1,9 @@
 import { ParkingLot } from './parking-lot.enum';
 
-export class Restaurant {
-    id: string;
+export class RestaurantView {
+    id: number;
     city: string;
-    cuisine: any[];
+    cuisines: string;
     name: string;
     notes: string;
     parkingLot: ParkingLot;

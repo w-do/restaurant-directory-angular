@@ -3,23 +3,21 @@ import { Injectable } from '@angular/core';
 import { Observable, throwError } from 'rxjs';
 import { catchError, map } from 'rxjs/operators';
 import { AppConfigService } from '../app-config.service';
-import { RestaurantEdit } from './models/restaurant-edit.model';
-import { RestaurantView } from './models/restaurant-view.model';
+import { City } from './models/city.model';
+import { Cuisine } from './models/cuisine.model';
 
-@Injectable({
-    providedIn: 'root'
-})
-export class RestaurantService {
+@Injectable()
+export class SharedService {
     private url: string;
 
     constructor(appConfig: AppConfigService, private http: HttpClient) {
-        this.url = appConfig.get('apiUrl') + '/restaurant';
+        this.url = appConfig.get('apiUrl');
     }
 
-    getRestaurant(id: number): Observable<RestaurantEdit> {
-        return this.http.get(this.url + '/' + id)
+    getCities(): Observable<City[]> {
+        return this.http.get(this.url + '/city')
             .pipe(
-                map(response => <RestaurantEdit>response),
+                map(response => <City[]>response),
                 catchError(response => {
                     console.log(response);
                     return throwError(response);
@@ -27,10 +25,10 @@ export class RestaurantService {
             );
     }
 
-    getRestaurants(): Observable<RestaurantView[]> {
-        return this.http.get(this.url)
+    getCuisines(): Observable<Cuisine[]> {
+        return this.http.get(this.url + '/cuisine')
             .pipe(
-                map(response => <RestaurantView[]>response),
+                map(response => <Cuisine[]>response),
                 catchError(response => {
                     console.log(response);
                     return throwError(response);
