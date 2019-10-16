@@ -16,10 +16,10 @@ export class RestaurantService {
         this.url = appConfig.get('apiUrl') + '/restaurant';
     }
 
-    addRestaurant(restaurant: RestaurantEdit): Observable<Response> {
+    addRestaurant(restaurant: RestaurantEdit): Observable<number> {
         return this.http.post(this.url, restaurant)
             .pipe(
-                map(response => <Response>response),
+                map(response => <number>response),
                 catchError(this.throw)
             );
     }
@@ -40,8 +40,8 @@ export class RestaurantService {
             );
     }
 
-    private throw(response: any): Observable<never> {
-        console.log(response);
-        return throwError(response);
+    private throw(error: any): Observable<never> {
+        console.log(error);
+        return throwError(error);
     }
 }

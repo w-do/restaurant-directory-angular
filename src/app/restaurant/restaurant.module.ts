@@ -9,7 +9,6 @@ import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
 import { MatSortModule } from '@angular/material/sort';
 import { MatTableModule } from '@angular/material/table';
-import { SharedService } from '../shared/shared.service';
 import { RestaurantDialogComponent } from './restaurant-dialog/restaurant-dialog.component';
 import { RestaurantListComponent } from './restaurant-list/restaurant-list.component';
 import { RestaurantRoutingModule } from './restaurant-routing.module';
@@ -32,7 +31,6 @@ import { RestaurantRoutingModule } from './restaurant-routing.module';
         MatSortModule,
         MatTableModule,
         RestaurantRoutingModule
-    ],
-    providers: [SharedService]
+    ]
 })
 export class RestaurantModule { }

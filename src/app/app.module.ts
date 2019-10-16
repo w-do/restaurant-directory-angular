@@ -8,12 +8,19 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppConfigService } from './app-config.service';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { AddCityDialogComponent } from './shared/add-city-dialog/add-city-dialog.component';
+import { AddCuisineDialogComponent } from './shared/add-cuisine-dialog/add-cuisine-dialog.component';
+import { SharedModule } from './shared/shared.module';
 
 const initialize = (appConfig: AppConfigService) => () => appConfig.load();
 
 @NgModule({
     declarations: [
         AppComponent
+    ],
+    entryComponents: [
+        AddCityDialogComponent,
+        AddCuisineDialogComponent
     ],
     imports: [
         BrowserModule,
@@ -22,7 +29,8 @@ const initialize = (appConfig: AppConfigService) => () => appConfig.load();
         AppRoutingModule,
         MatButtonModule,
         MatMenuModule,
-        MatToolbarModule
+        MatToolbarModule,
+        SharedModule
     ],
     providers: [
         { provide: APP_INITIALIZER, useFactory: initialize, multi: true, deps: [AppConfigService] }

@@ -1,0 +1,10 @@
+<h1 mat-dialog-title>Add new city</h1>
+<div mat-dialog-content>
+    <mat-form-field>
+        <input [(ngModel)]="name" matInput placeholder="Name">
+    </mat-form-field>
+</div>
+<div align="end" mat-dialog-actions>
+    <button (click)="dialogRef.close()" mat-stroked-button>Cancel</button>
+    <button (click)="save()" color="primary" mat-flat-button>Save</button>
+</div>

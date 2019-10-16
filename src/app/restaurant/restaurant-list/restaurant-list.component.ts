@@ -34,15 +34,12 @@ export class RestaurantListComponent implements OnInit {
     }
 
     openDialog(id: number) {
-        let dialogRef = this.dialog.open(RestaurantDialogComponent, {
-            width: '400px',
-            data: id
-        });
-
-        dialogRef.afterClosed().subscribe(result => {
-            if (result) {
-                this.getRestaurants();
-            }
-        });
+        this.dialog.open(RestaurantDialogComponent, { width: '400px', data: id })
+            .afterClosed()
+            .subscribe(result => {
+                if (result) {
+                    this.getRestaurants();
+                }
+            });
     }
 }

@@ -1,6 +1,6 @@
 <h1 *ngIf="id" mat-dialog-title>{{restaurant.name}}</h1>
 <h1 *ngIf="!id" mat-dialog-title>New Restaurant</h1>
-<div>
+<div mat-dialog-content>
     <mat-form-field>
         <input [(ngModel)]="restaurant.name" matInput placeholder="Name">
     </mat-form-field>
@@ -11,6 +11,7 @@
             <mat-option *ngFor="let city of cities" [value]="city.id">
                 {{city.name}}
             </mat-option>
+            <mat-option (click)="addCity()">Add new city</mat-option>
         </mat-select>
     </mat-form-field>
     <mat-form-field>
@@ -18,6 +19,9 @@
         <mat-select [(ngModel)]="restaurant.cuisineIds" multiple>
             <mat-option *ngFor="let cuisine of cuisines" [value]="cuisine.id">
                 {{cuisine.name}}
+            </mat-option>
+            <mat-option [value]="null" (click)="addCuisine()">
+                Add new cuisine
             </mat-option>
         </mat-select>
     </mat-form-field>
@@ -39,7 +43,7 @@
         <textarea matInput placeholder="Notes" rows="4"></textarea>
     </mat-form-field>
 </div>
-<div mat-dialog-actions>
-    <button (click)="dialogRef.close()" mat-button>Cancel</button>
-    <button (click)="save()" mat-button>Save</button>
+<div align="end" mat-dialog-actions>
+    <button (click)="dialogRef.close()" mat-stroked-button>Cancel</button>
+    <button (click)="save()" color="primary" mat-flat-button>Save</button>
 </div>
