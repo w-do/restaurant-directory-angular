@@ -7,7 +7,7 @@
     <mat-form-field>
         <mat-label>City</mat-label>
         <mat-select [(ngModel)]="restaurant.cityId">
-            <mat-option [value]="null">--</mat-option>
+            <mat-option></mat-option>
             <mat-option *ngFor="let city of cities" [value]="city.id">
                 {{city.name}}
             </mat-option>
@@ -27,7 +27,8 @@
     </mat-form-field>
     <mat-form-field>
         <mat-label>Parking lot</mat-label>
-        <mat-select>
+        <mat-select [(ngModel)]="restaurant.parkingLot">
+            <mat-option></mat-option>
             <mat-option [value]="2">?</mat-option>
             <mat-option [value]="1">Yes</mat-option>
             <mat-option [value]="0">No</mat-option>
@@ -40,7 +41,7 @@
         <input [(ngModel)]="restaurant.yelp" matInput placeholder="Yelp">
     </mat-form-field>
     <mat-form-field>
-        <textarea matInput placeholder="Notes" rows="4"></textarea>
+        <textarea [(ngModel)]="restaurant.notes" matInput placeholder="Notes" rows="4"></textarea>
     </mat-form-field>
 </div>
 <div align="end" mat-dialog-actions>

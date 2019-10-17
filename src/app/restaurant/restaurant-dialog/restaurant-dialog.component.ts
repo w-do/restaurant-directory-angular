@@ -5,8 +5,9 @@ import { AddCuisineDialogComponent } from '../../shared/add-cuisine-dialog/add-c
 import { City } from '../../shared/models/city.model';
 import { Cuisine } from '../../shared/models/cuisine.model';
 import { SharedService } from '../../shared/shared.service';
-import { RestaurantEdit } from '../models/restaurant-edit.model';
+import { Restaurant } from '../models/restaurant.model';
 import { RestaurantService } from '../restaurant.service';
+import { Observable } from 'rxjs';
 
 @Component({
     selector: 'app-restaurant-dialog',
@@ -16,7 +17,7 @@ import { RestaurantService } from '../restaurant.service';
 export class RestaurantDialogComponent implements OnInit {
     cities: City[];
     cuisines: Cuisine[];
-    restaurant: RestaurantEdit;
+    restaurant: Restaurant;
 
     constructor(public dialogRef: MatDialogRef<RestaurantDialogComponent>,
         @Inject(MAT_DIALOG_DATA) public id: number,
@@ -25,7 +26,7 @@ export class RestaurantDialogComponent implements OnInit {
         private sharedService: SharedService) {
         this.cities = [];
         this.cuisines = [];
-        this.restaurant = new RestaurantEdit();
+        this.restaurant = new Restaurant();
     }
 
     ngOnInit() {
@@ -63,8 +64,11 @@ export class RestaurantDialogComponent implements OnInit {
     }
 
     save() {
-        this.restaurantService.addRestaurant(this.restaurant)
-            .subscribe(() => this.dialogRef.close(true));
+        let request: Observable<any> = this.id === null
+            ? this.restaurantService.addRestaurant(this.restaurant)
+            : this.restaurantService.updateRestaurant(this.id, this.restaurant);
+
+        request.subscribe(() => this.dialogRef.close(true));
     }
 
     private getCities() {

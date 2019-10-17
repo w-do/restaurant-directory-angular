@@ -3,8 +3,8 @@ import { Injectable } from '@angular/core';
 import { Observable, throwError } from 'rxjs';
 import { catchError, map } from 'rxjs/operators';
 import { AppConfigService } from '../app-config.service';
-import { RestaurantEdit } from './models/restaurant-edit.model';
 import { RestaurantView } from './models/restaurant-view.model';
+import { Restaurant } from './models/restaurant.model';
 
 @Injectable({
     providedIn: 'root'
@@ -16,7 +16,7 @@ export class RestaurantService {
         this.url = appConfig.get('apiUrl') + '/restaurant';
     }
 
-    addRestaurant(restaurant: RestaurantEdit): Observable<number> {
+    addRestaurant(restaurant: Restaurant): Observable<number> {
         return this.http.post(this.url, restaurant)
             .pipe(
                 map(response => <number>response),
@@ -24,10 +24,10 @@ export class RestaurantService {
             );
     }
 
-    getRestaurant(id: number): Observable<RestaurantEdit> {
+    getRestaurant(id: number): Observable<Restaurant> {
         return this.http.get(this.url + '/' + id)
             .pipe(
-                map(response => <RestaurantEdit>response),
+                map(response => <Restaurant>response),
                 catchError(this.throw)
             );
     }
@@ -36,6 +36,14 @@ export class RestaurantService {
         return this.http.get(this.url)
             .pipe(
                 map(response => <RestaurantView[]>response),
+                catchError(this.throw)
+            );
+    }
+
+    updateRestaurant(id: number, restaurant: Restaurant): Observable<Response> {
+        return this.http.put(this.url + '/' + id, restaurant)
+            .pipe(
+                map(response => <Response>response),
                 catchError(this.throw)
             );
     }
