@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, throwError } from 'rxjs';
 import { catchError, map } from 'rxjs/operators';
@@ -32,8 +32,8 @@ export class RestaurantService {
             );
     }
 
-    getRestaurants(): Observable<RestaurantView[]> {
-        return this.http.get(this.url)
+    getRestaurants(filter: any): Observable<RestaurantView[]> {
+        return this.http.get(this.url, { params: this.toParams(filter) })
             .pipe(
                 map(response => <RestaurantView[]>response),
                 catchError(this.throw)
@@ -51,5 +51,21 @@ export class RestaurantService {
     private throw(error: any): Observable<never> {
         console.log(error);
         return throwError(error);
+    }
+
+    private toParams(object: any): HttpParams {
+        let params = new HttpParams();
+
+        for (let prop in object) {
+            let propVal = object[prop];
+
+            if (Array.isArray(propVal)) {
+                propVal.forEach(x => params.append(prop, x));
+            } else if (propVal != null && propVal !== undefined) {
+                params = params.set(prop, propVal);
+            }
+        }
+
+        return params;
     }
 }

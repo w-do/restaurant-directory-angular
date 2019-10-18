@@ -1,13 +1,57 @@
 <div style="padding: 30px;">
-    <button (click)="openDialog(null)" color="primary" mat-flat-button>
-        <i class="fa fa-plus" aria-hidden="true"></i> Add restaurant
-    </button>
+    <mat-toolbar>
+        <mat-toolbar-row>
+            <button (click)="openDialog(null)" color="primary" mat-button>
+                <i class="fa fa-plus" aria-hidden="true"></i> Add restaurant
+            </button>
+            <span class="spacer"></span>
+            <button (click)="toggleFilter()" mat-icon-button>
+                <i class="fa fa-filter" aria-label="Filter"></i>
+            </button>
+        </mat-toolbar-row>
+    </mat-toolbar>
+    <mat-card *ngIf="filterIsVisible">
+        <mat-form-field appearance="standard">
+            <input [(ngModel)]="filter.searchTerm" matInput placeholder="Search name/notes">
+            <i class="fa fa-filter" aria-hidden="true" matSuffix></i>
+        </mat-form-field>
+        <mat-form-field appearance="standard">
+            <mat-select [(ngModel)]="filter.tried" placeholder="Tried">
+                <mat-option></mat-option>
+                <mat-option [value]="true">Yes</mat-option>
+                <mat-option [value]="false">No</mat-option>
+            </mat-select>
+        </mat-form-field>
+        <mat-form-field appearance="standard">
+            <mat-select [(ngModel)]="filter.cityIds" multiple placeholder="City">
+                <mat-option *ngFor="let city of cities" [value]="city.id">
+                    {{city.name}}
+                </mat-option>
+            </mat-select>
+        </mat-form-field>
+        <mat-form-field appearance="standard">
+            <mat-select [(ngModel)]="filter.cuisineIds" multiple placeholder="Cuisine">
+                <mat-option *ngFor="let cuisine of cuisines" [value]="cuisine.id">
+                    {{cuisine.name}}
+                </mat-option>
+            </mat-select>
+        </mat-form-field>
+        <mat-form-field appearance="standard">
+            <mat-select [(ngModel)]="filter.parkingLot" multiple placeholder="Parking Lot">
+                <mat-option [value]="2">?</mat-option>
+                <mat-option [value]="1">Yes</mat-option>
+                <mat-option [value]="0">No</mat-option>
+            </mat-select>
+        </mat-form-field>
+        <button (click)="applyFilters()" mat-button>Apply filters</button>
+        <button (click)="clearFilters()" mat-button>Clear filters</button>
+    </mat-card>
     <table [dataSource]="restaurants" class="mat-elevation-z8" mat-table matSort style="margin-top: 10px; width: 100%;">
         <ng-container matColumnDef="edit">
             <th *matHeaderCellDef mat-header-cell></th>
             <td *matCellDef="let restaurant" mat-cell>
                 <button (click)="openDialog(restaurant.id)" mat-icon-button>
-                    <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+                    <i class="fa fa-pencil-square-o" aria-label="Edit"></i>
                 </button>
             </td>
         </ng-container>
@@ -30,7 +74,7 @@
             <th *matHeaderCellDef mat-header-cell mat-sort-header>City</th>
             <td *matCellDef="let restaurant" mat-cell>{{restaurant.city}}</td>
         </ng-container>
-        <ng-container matColumnDef="cuisine">
+        <ng-container matColumnDef="cuisines">
             <th *matHeaderCellDef mat-header-cell mat-sort-header>Cuisine</th>
             <td *matCellDef="let restaurant" mat-cell>{{restaurant.cuisines}}</td>
         </ng-container>
