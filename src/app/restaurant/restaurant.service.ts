@@ -60,7 +60,7 @@ export class RestaurantService {
             let propVal = object[prop];
 
             if (Array.isArray(propVal)) {
-                propVal.forEach(x => params.append(prop, x));
+                propVal.forEach(x => params = params.append(prop, x));
             } else if (propVal !== null && propVal !== undefined) {
                 params = params.set(prop, propVal);
             }
