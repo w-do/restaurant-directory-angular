@@ -61,7 +61,7 @@ export class RestaurantService {
 
             if (Array.isArray(propVal)) {
                 propVal.forEach(x => params.append(prop, x));
-            } else if (propVal != null && propVal !== undefined) {
+            } else if (propVal !== null && propVal !== undefined) {
                 params = params.set(prop, propVal);
             }
         }
