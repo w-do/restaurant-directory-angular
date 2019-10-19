@@ -7,11 +7,13 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { AddCityDialogComponent } from './add-city-dialog/add-city-dialog.component';
 import { AddCuisineDialogComponent } from './add-cuisine-dialog/add-cuisine-dialog.component';
+import { ConfirmDialogComponent } from './confirm-dialog/confirm-dialog.component';
 
 @NgModule({
     declarations: [
         AddCityDialogComponent,
-        AddCuisineDialogComponent
+        AddCuisineDialogComponent,
+        ConfirmDialogComponent
     ],
     imports: [
         CommonModule,

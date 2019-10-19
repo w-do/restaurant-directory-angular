@@ -24,6 +24,14 @@ export class RestaurantService {
             );
     }
 
+    deleteRestaurant(id: number): Observable<Response> {
+        return this.http.delete(this.url + '/' + id)
+            .pipe(
+                map(response => <Response>response),
+                catchError(this.throw)
+            );
+    }
+
     getRestaurant(id: number): Observable<Restaurant> {
         return this.http.get(this.url + '/' + id)
             .pipe(

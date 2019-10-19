@@ -50,15 +50,19 @@
         <ng-container matColumnDef="edit">
             <th *matHeaderCellDef mat-header-cell></th>
             <td *matCellDef="let restaurant" mat-cell>
-                <button (click)="openDialog(restaurant.id)" mat-icon-button>
-                    <i class="fa fa-pencil-square-o" aria-label="Edit"></i>
-                </button>
+                <a (click)="openDialog(restaurant.id)" class="pointer">
+                    <i class="fa fa-fw fa-pencil" aria-label="Edit"></i>
+                </a>
+                &nbsp;
+                <a (click)="delete(restaurant.id)" class="danger pointer">
+                    <i class="fa fa-fw fa-trash" aria-label="Delete"></i>
+                </a>
             </td>
         </ng-container>
         <ng-container matColumnDef="tried">
             <th *matHeaderCellDef mat-header-cell mat-sort-header>Tried</th>
             <td *matCellDef="let restaurant" mat-cell>
-                <i *ngIf="restaurant.tried" class="fa fa-check"></i>
+                <i *ngIf="restaurant.tried" class="fa fa-check" aria-label="Tried"></i>
             </td>
         </ng-container>
         <ng-container matColumnDef="name">
@@ -66,7 +70,7 @@
             <td *matCellDef="let restaurant" mat-cell>
                 {{restaurant.name}}
                 <a *ngIf="restaurant.yelp" color="primary" href="{{restaurant.yelp}}" mat-icon-button>
-                    <i class="fa fa-yelp"></i>
+                    <i class="fa fa-yelp" aria-label="Yelp link"></i>
                 </a>
             </td>
         </ng-container>
@@ -81,9 +85,9 @@
         <ng-container matColumnDef="parkingLot">
             <th *matHeaderCellDef mat-header-cell mat-sort-header>Parking Lot</th>
             <td *matCellDef="let restaurant" mat-cell>
-                <span *ngIf="restaurant.parkingLot === 0">no</span>
-                <span *ngIf="restaurant.parkingLot === 1">yes</span>
                 <span *ngIf="restaurant.parkingLot === 2">?</span>
+                <span *ngIf="restaurant.parkingLot === 1">Yes</span>
+                <span *ngIf="restaurant.parkingLot === 0">No</span>
             </td>
         </ng-container>
         <ng-container matColumnDef="notes">

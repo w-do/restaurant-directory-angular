@@ -1,0 +1,12 @@
+<h1 mat-dialog-title>{{config.title}}</h1>
+<div mat-dialog-content>
+    <p>{{config.body}}</p>
+</div>
+<div align="end" mat-dialog-actions>
+    <button (click)="dialogRef.close()" mat-stroked-button>
+        {{config.cancelText}}
+    </button>
+    <button (click)="dialogRef.close(true)" color="{{config.confirmColor}}" mat-flat-button>
+        {{config.confirmText}}
+    </button>
+</div>

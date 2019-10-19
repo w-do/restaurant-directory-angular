@@ -2,6 +2,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
+import { ConfirmDialogComponent } from '../../shared/confirm-dialog/confirm-dialog.component';
 import { City } from '../../shared/models/city.model';
 import { Cuisine } from '../../shared/models/cuisine.model';
 import { SharedService } from '../../shared/shared.service';
@@ -46,8 +47,31 @@ export class RestaurantListComponent implements OnInit {
         this.getRestaurants();
     }
 
+    delete(id: number) {
+        let config = {
+            data: {
+                body: 'Are you sure you want to delete this restaurant?',
+                confirmColor: 'warn',
+                confirmText: 'Delete',
+                title: 'Confirm Delete'
+            },
+            width: '400px'
+        };
+
+        this.dialog.open(ConfirmDialogComponent, config)
+            .afterClosed()
+            .subscribe(result => {
+                if (result) {
+                    this.restaurantService.deleteRestaurant(id)
+                        .subscribe(() => {
+                            this.getRestaurants();
+                        });
+                }
+            });
+    }
+
     openDialog(id: number) {
-        this.dialog.open(RestaurantDialogComponent, { width: '400px', data: id })
+        this.dialog.open(RestaurantDialogComponent, { data: id, width: '400px' })
             .afterClosed()
             .subscribe(result => {
                 if (result) {
