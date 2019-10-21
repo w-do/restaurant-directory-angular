@@ -5,15 +5,18 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
+import { MatTableModule } from '@angular/material/table';
 import { AddCityDialogComponent } from './add-city-dialog/add-city-dialog.component';
 import { AddCuisineDialogComponent } from './add-cuisine-dialog/add-cuisine-dialog.component';
 import { ConfirmDialogComponent } from './confirm-dialog/confirm-dialog.component';
+import { ManageCityDialogComponent } from './manage-city-dialog/manage-city-dialog.component';
 
 @NgModule({
     declarations: [
         AddCityDialogComponent,
         AddCuisineDialogComponent,
-        ConfirmDialogComponent
+        ConfirmDialogComponent,
+        ManageCityDialogComponent
     ],
     imports: [
         CommonModule,
@@ -21,7 +24,8 @@ import { ConfirmDialogComponent } from './confirm-dialog/confirm-dialog.componen
         MatButtonModule,
         MatDialogModule,
         MatFormFieldModule,
-        MatInputModule
+        MatInputModule,
+        MatTableModule
     ]
 })
 export class SharedModule { }

@@ -11,6 +11,7 @@ import { AppComponent } from './app.component';
 import { AddCityDialogComponent } from './shared/add-city-dialog/add-city-dialog.component';
 import { AddCuisineDialogComponent } from './shared/add-cuisine-dialog/add-cuisine-dialog.component';
 import { ConfirmDialogComponent } from './shared/confirm-dialog/confirm-dialog.component';
+import { ManageCityDialogComponent } from './shared/manage-city-dialog/manage-city-dialog.component';
 import { SharedModule } from './shared/shared.module';
 
 const initialize = (appConfig: AppConfigService) => () => appConfig.load();
@@ -22,7 +23,8 @@ const initialize = (appConfig: AppConfigService) => () => appConfig.load();
     entryComponents: [
         AddCityDialogComponent,
         AddCuisineDialogComponent,
-        ConfirmDialogComponent
+        ConfirmDialogComponent,
+        ManageCityDialogComponent
     ],
     imports: [
         BrowserModule,

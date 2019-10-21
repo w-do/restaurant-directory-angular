@@ -1,0 +1,28 @@
+<h1 mat-dialog-title>Manage cities</h1>
+<div mat-dialog-content>
+    <table [dataSource]="cities" mat-table matSort style="width: 100%;">
+        <ng-container matColumnDef="actions">
+            <th *matHeaderCellDef mat-header-cell></th>
+            <td *matCellDef="let city" mat-cell>
+                <a (click)="edit(city.id)" class="pointer">
+                    <i class="fa fa-fw fa-pencil" aria-label="Edit"></i>
+                </a>
+                &nbsp;
+                <a (click)="delete(city.id)" class="danger pointer">
+                    <i class="fa fa-fw fa-trash" aria-label="Delete"></i>
+                </a>
+            </td>
+        </ng-container>
+        <ng-container matColumnDef="name">
+            <th *matHeaderCellDef mat-header-cell>Name</th>
+            <td *matCellDef="let city" mat-cell>{{city.name}}</td>
+        </ng-container>
+        <tr *matHeaderRowDef="columns" mat-header-row></tr>
+        <tr *matRowDef="let row; columns: columns" mat-row></tr>
+    </table>
+</div>
+<div align="end" mat-dialog-actions>
+    <button (click)="dialogRef.close()" color="primary" mat-flat-button>
+        Done
+    </button>
+</div>

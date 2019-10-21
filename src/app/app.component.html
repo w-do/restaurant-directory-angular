@@ -9,7 +9,7 @@
             <i class="fa fa-cog" aria-label="Settings"></i>
         </button>
         <mat-menu #menu="matMenu" xPosition="before">
-            <button mat-menu-item>
+            <button (click)="manageCities()" mat-menu-item>
                 <i class="fa fa-building fa-fw" aria-hidden="true"></i> Manage cities
             </button>
             <button mat-menu-item>

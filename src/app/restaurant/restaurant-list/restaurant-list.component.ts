@@ -28,7 +28,7 @@ export class RestaurantListComponent implements OnInit {
     constructor(private dialog: MatDialog,
         private restaurantService: RestaurantService,
         private sharedService: SharedService) {
-        this.columns = ['edit', 'tried', 'name', 'city', 'cuisines', 'parkingLot', 'notes'];
+        this.columns = ['actions', 'tried', 'name', 'city', 'cuisines', 'parkingLot', 'notes'];
         this.filter = {};
     }
 
