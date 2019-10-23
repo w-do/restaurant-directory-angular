@@ -13,7 +13,9 @@ export class AddCuisineDialogComponent implements OnInit {
     constructor(public dialogRef: MatDialogRef<AddCuisineDialogComponent>,
         private sharedService: SharedService) { }
 
-    ngOnInit() { }
+    ngOnInit() {
+        this.dialogRef.updateSize('300px');
+    }
 
     save() {
         this.sharedService.addCuisine(this.name)

@@ -1,10 +1,15 @@
-<h1 mat-dialog-title>Manage cities</h1>
+<h1 mat-dialog-title>
+    Manage cities
+    <button (click)="add()" mat-button>
+        <i class="fa fa-plus" aria-hidden="true"></i> Add City
+    </button>
+</h1>
 <div mat-dialog-content>
     <table [dataSource]="cities" mat-table matSort style="width: 100%;">
         <ng-container matColumnDef="actions">
-            <th *matHeaderCellDef mat-header-cell></th>
-            <td *matCellDef="let city" mat-cell>
-                <a (click)="edit(city.id)" class="pointer">
+            <th *matHeaderCellDef class="th-icon" mat-header-cell></th>
+            <td *matCellDef="let city" class="td-icon" mat-cell>
+                <a (click)="update(city.id)" class="pointer">
                     <i class="fa fa-fw fa-pencil" aria-label="Edit"></i>
                 </a>
                 &nbsp;
@@ -21,7 +26,7 @@
         <tr *matRowDef="let row; columns: columns" mat-row></tr>
     </table>
 </div>
-<div align="end" mat-dialog-actions>
+<div mat-dialog-actions>
     <button (click)="dialogRef.close()" color="primary" mat-flat-button>
         Done
     </button>

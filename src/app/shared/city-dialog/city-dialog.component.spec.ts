@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { ManageCityDialogComponent } from './manage-city-dialog.component';
+import { CityDialogComponent } from './city-dialog.component';
 
-describe('ManageCityDialogComponent', () => {
-  let component: ManageCityDialogComponent;
-  let fixture: ComponentFixture<ManageCityDialogComponent>;
+describe('CityDialogComponent', () => {
+  let component: CityDialogComponent;
+  let fixture: ComponentFixture<CityDialogComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ ManageCityDialogComponent ]
+      declarations: [ CityDialogComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(ManageCityDialogComponent);
+    fixture = TestBed.createComponent(CityDialogComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

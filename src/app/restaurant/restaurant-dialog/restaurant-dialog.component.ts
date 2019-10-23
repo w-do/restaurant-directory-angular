@@ -1,13 +1,13 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { AddCityDialogComponent } from '../../shared/add-city-dialog/add-city-dialog.component';
+import { Observable } from 'rxjs';
 import { AddCuisineDialogComponent } from '../../shared/add-cuisine-dialog/add-cuisine-dialog.component';
+import { CityDialogComponent } from '../../shared/city-dialog/city-dialog.component';
 import { City } from '../../shared/models/city.model';
 import { Cuisine } from '../../shared/models/cuisine.model';
 import { SharedService } from '../../shared/shared.service';
 import { Restaurant } from '../models/restaurant.model';
 import { RestaurantService } from '../restaurant.service';
-import { Observable } from 'rxjs';
 
 @Component({
     selector: 'app-restaurant-dialog',
@@ -30,6 +30,7 @@ export class RestaurantDialogComponent implements OnInit {
     }
 
     ngOnInit() {
+        this.dialogRef.updateSize('400px');
         this.getCities();
         this.getCuisines();
 
@@ -40,7 +41,7 @@ export class RestaurantDialogComponent implements OnInit {
     }
 
     addCity() {
-        this.dialog.open(AddCityDialogComponent, { width: '300px' })
+        this.dialog.open(CityDialogComponent, { data: null })
             .afterClosed()
             .subscribe(result => {
                 if (result) {
@@ -53,7 +54,7 @@ export class RestaurantDialogComponent implements OnInit {
     addCuisine() {
         this.restaurant.cuisineIds = this.restaurant.cuisineIds.filter(x => x !== null);
 
-        this.dialog.open(AddCuisineDialogComponent, { width: '300px' })
+        this.dialog.open(AddCuisineDialogComponent)
             .afterClosed()
             .subscribe(result => {
                 if (result) {

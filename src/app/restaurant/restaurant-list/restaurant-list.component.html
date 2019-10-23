@@ -48,8 +48,8 @@
     </mat-card>
     <table [dataSource]="restaurants" class="mat-elevation-z8" mat-table matSort style="margin-top: 10px; width: 100%;">
         <ng-container matColumnDef="actions">
-            <th *matHeaderCellDef mat-header-cell></th>
-            <td *matCellDef="let restaurant" mat-cell>
+            <th *matHeaderCellDef class="th-icon" mat-header-cell></th>
+            <td *matCellDef="let restaurant" class="td-icon" mat-cell>
                 <a (click)="openDialog(restaurant.id)" class="pointer">
                     <i class="fa fa-fw fa-pencil" aria-label="Edit"></i>
                 </a>

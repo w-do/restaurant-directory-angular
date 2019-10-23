@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import { ManageCityDialogComponent } from './shared/manage-city-dialog/manage-city-dialog.component';
+import { ManageCitiesDialogComponent } from './shared/manage-cities-dialog/manage-cities-dialog.component';
 
 @Component({
     selector: 'app-root',
@@ -13,6 +13,6 @@ export class AppComponent {
     constructor(private dialog: MatDialog) { }
 
     manageCities() {
-        this.dialog.open(ManageCityDialogComponent, { width: '400px' });
+        this.dialog.open(ManageCitiesDialogComponent);
     }
 }

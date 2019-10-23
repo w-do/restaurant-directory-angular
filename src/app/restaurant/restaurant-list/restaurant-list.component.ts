@@ -71,7 +71,7 @@ export class RestaurantListComponent implements OnInit {
     }
 
     openDialog(id: number) {
-        this.dialog.open(RestaurantDialogComponent, { data: id, width: '400px' })
+        this.dialog.open(RestaurantDialogComponent, { data: id })
             .afterClosed()
             .subscribe(result => {
                 if (result) {
