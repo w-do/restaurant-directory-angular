@@ -6,16 +6,16 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatTableModule } from '@angular/material/table';
-import { AddCuisineDialogComponent } from './add-cuisine-dialog/add-cuisine-dialog.component';
 import { CityDialogComponent } from './city-dialog/city-dialog.component';
 import { ConfirmDialogComponent } from './confirm-dialog/confirm-dialog.component';
+import { CuisineDialogComponent } from './cuisine-dialog/cuisine-dialog.component';
 import { ManageCitiesDialogComponent } from './manage-cities-dialog/manage-cities-dialog.component';
 
 @NgModule({
     declarations: [
-        AddCuisineDialogComponent,
         CityDialogComponent,
         ConfirmDialogComponent,
+        CuisineDialogComponent,
         ManageCitiesDialogComponent
     ],
     imports: [

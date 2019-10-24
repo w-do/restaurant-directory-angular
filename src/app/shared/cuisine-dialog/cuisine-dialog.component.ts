@@ -3,14 +3,14 @@ import { MatDialogRef } from '@angular/material/dialog';
 import { SharedService } from '../shared.service';
 
 @Component({
-    selector: 'app-add-cuisine-dialog',
-    templateUrl: './add-cuisine-dialog.component.html',
-    styleUrls: ['./add-cuisine-dialog.component.css']
+    selector: 'app-cuisine-dialog',
+    templateUrl: './cuisine-dialog.component.html',
+    styleUrls: ['./cuisine-dialog.component.css']
 })
-export class AddCuisineDialogComponent implements OnInit {
+export class CuisineDialogComponent implements OnInit {
     name: string;
 
-    constructor(public dialogRef: MatDialogRef<AddCuisineDialogComponent>,
+    constructor(public dialogRef: MatDialogRef<CuisineDialogComponent>,
         private sharedService: SharedService) { }
 
     ngOnInit() {

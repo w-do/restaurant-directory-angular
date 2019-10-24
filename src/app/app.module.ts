@@ -8,9 +8,9 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppConfigService } from './app-config.service';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { AddCuisineDialogComponent } from './shared/add-cuisine-dialog/add-cuisine-dialog.component';
 import { CityDialogComponent } from './shared/city-dialog/city-dialog.component';
 import { ConfirmDialogComponent } from './shared/confirm-dialog/confirm-dialog.component';
+import { CuisineDialogComponent } from './shared/cuisine-dialog/cuisine-dialog.component';
 import { ManageCitiesDialogComponent } from './shared/manage-cities-dialog/manage-cities-dialog.component';
 import { SharedModule } from './shared/shared.module';
 
@@ -21,9 +21,9 @@ const initialize = (appConfig: AppConfigService) => () => appConfig.load();
         AppComponent
     ],
     entryComponents: [
-        AddCuisineDialogComponent,
         CityDialogComponent,
         ConfirmDialogComponent,
+        CuisineDialogComponent,
         ManageCitiesDialogComponent
     ],
     imports: [
