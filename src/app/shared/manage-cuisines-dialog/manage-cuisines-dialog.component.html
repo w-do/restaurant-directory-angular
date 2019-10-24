@@ -1,28 +1,28 @@
 <h1 mat-dialog-title>
-    Manage cities
+    Manage cuisines
     <button (click)="add()" mat-button>
-        <i class="fa fa-plus" aria-hidden="true"></i> Add City
+        <i class="fa fa-plus" aria-hidden="true"></i> Add Cuisine
     </button>
 </h1>
 <div mat-dialog-content>
-    <table [dataSource]="cities" mat-table>
+    <table [dataSource]="cuisines" mat-table>
         <ng-container matColumnDef="actions">
             <th *matHeaderCellDef class="th-icon" mat-header-cell></th>
-            <td *matCellDef="let city" class="td-icon" mat-cell>
-                <a (click)="update(city.id)" class="pointer">
+            <td *matCellDef="let cuisine" class="td-icon" mat-cell>
+                <a (click)="update(cuisine.id)" class="pointer">
                     <i class="fa fa-fw fa-pencil" aria-label="Edit"></i>
                 </a>
                 &nbsp;
-                <a (click)="delete(city.id)" class="danger pointer">
+                <a (click)="delete(cuisine.id)" class="danger pointer">
                     <i class="fa fa-fw fa-trash" aria-label="Delete"></i>
                 </a>
             </td>
         </ng-container>
         <ng-container matColumnDef="name">
-            <th *matHeaderCellDef mat-header-cell>Name</th>
-            <td *matCellDef="let city" mat-cell>{{city.name}}</td>
+            <th *matHeaderCellDef class="th-icon" mat-header-cell>Name</th>
+            <td *matCellDef="let cuisine" class="td-icon" mat-cell>{{cuisine.name}}</td>
         </ng-container>
-        <tr *matHeaderRowDef="columns" mat-header-row></tr>
+        <tr *matHeaderCellDef mat-header-cell></tr>
         <tr *matRowDef="let row; columns: columns" mat-row></tr>
     </table>
 </div>

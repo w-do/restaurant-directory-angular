@@ -12,6 +12,7 @@ import { CityDialogComponent } from './shared/city-dialog/city-dialog.component'
 import { ConfirmDialogComponent } from './shared/confirm-dialog/confirm-dialog.component';
 import { CuisineDialogComponent } from './shared/cuisine-dialog/cuisine-dialog.component';
 import { ManageCitiesDialogComponent } from './shared/manage-cities-dialog/manage-cities-dialog.component';
+import { ManageCuisinesDialogComponent } from './shared/manage-cuisines-dialog/manage-cuisines-dialog.component';
 import { SharedModule } from './shared/shared.module';
 
 const initialize = (appConfig: AppConfigService) => () => appConfig.load();
@@ -24,7 +25,8 @@ const initialize = (appConfig: AppConfigService) => () => appConfig.load();
         CityDialogComponent,
         ConfirmDialogComponent,
         CuisineDialogComponent,
-        ManageCitiesDialogComponent
+        ManageCitiesDialogComponent,
+        ManageCuisinesDialogComponent
     ],
     imports: [
         BrowserModule,

@@ -1,20 +1,20 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
-import { CityDialogComponent } from '../city-dialog/city-dialog.component';
 import { ConfirmDialogComponent } from '../confirm-dialog/confirm-dialog.component';
-import { City } from '../models/city.model';
+import { CuisineDialogComponent } from '../cuisine-dialog/cuisine-dialog.component';
+import { Cuisine } from '../models/cuisine.model';
 import { SharedService } from '../shared.service';
 
 @Component({
-    selector: 'app-manage-cities-dialog',
-    templateUrl: './manage-cities-dialog.component.html',
-    styleUrls: ['./manage-cities-dialog.component.css']
+    selector: 'app-manage-cuisines-dialog',
+    templateUrl: './manage-cuisines-dialog.component.html',
+    styleUrls: ['./manage-cuisines-dialog.component.css']
 })
-export class ManageCitiesDialogComponent implements OnInit {
-    cities: City[];
+export class ManageCuisinesDialogComponent implements OnInit {
+    cuisines: Cuisine[];
     columns: string[];
 
-    constructor(public dialogRef: MatDialogRef<ManageCitiesDialogComponent>,
+    constructor(public dialogRef: MatDialogRef<ManageCuisinesDialogComponent>,
         private dialog: MatDialog,
         private sharedService: SharedService) {
         this.columns = ['actions', 'name'];
@@ -22,25 +22,25 @@ export class ManageCitiesDialogComponent implements OnInit {
 
     ngOnInit() {
         this.dialogRef.updateSize('400px');
-        this.getCities();
+        this.getCuisines();
     }
 
     add() {
-        this.dialog.open(CityDialogComponent, { data: null })
+        this.dialog.open(CuisineDialogComponent, { data: null })
             .afterClosed()
             .subscribe(result => {
                 if (result) {
-                    this.getCities();
+                    this.getCuisines();
                 }
             });
     }
 
     delete(id: number) {
-        this.sharedService.getCityRestaurants(id)
+        this.sharedService.getCuisineRestaurants(id)
             .subscribe(restaurants => {
                 let config = {
                     data: {
-                        body: 'Are you sure you want to delete this city?',
+                        body: 'Are you sure you want to delete this cuisine?',
                         confirmColor: 'warn',
                         confirmText: 'Delete',
                         title: 'Confirm deletion'
@@ -49,7 +49,7 @@ export class ManageCitiesDialogComponent implements OnInit {
                 };
 
                 if (restaurants.length > 0) {
-                    config.data.body += ' This will clear the city data for ';
+                    config.data.body += ' This will remove the cuisine from ';
                     config.data.body += restaurants.length > 4
                         ? '5 or more restaurants.'
                         : restaurants.length + ' restaurant(s).';
@@ -59,25 +59,25 @@ export class ManageCitiesDialogComponent implements OnInit {
                     .afterClosed()
                     .subscribe(result => {
                         if (result) {
-                            this.sharedService.deleteCity(id)
-                                .subscribe(() => this.getCities());
+                            this.sharedService.deleteCuisine(id)
+                                .subscribe(() => this.getCuisines());
                         }
                     });
             });
     }
 
     update(id: number) {
-        this.dialog.open(CityDialogComponent, { data: id })
+        this.dialog.open(CuisineDialogComponent, { data: id })
             .afterClosed()
             .subscribe(result => {
                 if (result) {
-                    this.getCities();
+                    this.getCuisines();
                 }
             });
     }
 
-    private getCities() {
-        this.sharedService.getCities()
-            .subscribe(cities => this.cities = cities);
+    private getCuisines() {
+        this.sharedService.getCuisines()
+            .subscribe(cuisines => this.cuisines = cuisines);
     }
 }

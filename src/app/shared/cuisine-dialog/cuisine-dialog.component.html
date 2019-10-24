@@ -1,7 +1,8 @@
-<h1 mat-dialog-title>Add new cuisine</h1>
+<h1 *ngIf="id" mat-dialog-title>Update {{name}}</h1>
+<h1 *ngIf="!id" mat-dialog-title>Add new cuisine</h1>
 <div mat-dialog-content>
     <mat-form-field>
-        <input [(ngModel)]="name" matInput placeholder="Name">
+        <input [(ngModel)]="cuisine.name" matInput placeholder="Name">
     </mat-form-field>
 </div>
 <div mat-dialog-actions>

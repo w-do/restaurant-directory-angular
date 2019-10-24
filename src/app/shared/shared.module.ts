@@ -10,13 +10,15 @@ import { CityDialogComponent } from './city-dialog/city-dialog.component';
 import { ConfirmDialogComponent } from './confirm-dialog/confirm-dialog.component';
 import { CuisineDialogComponent } from './cuisine-dialog/cuisine-dialog.component';
 import { ManageCitiesDialogComponent } from './manage-cities-dialog/manage-cities-dialog.component';
+import { ManageCuisinesDialogComponent } from './manage-cuisines-dialog/manage-cuisines-dialog.component';
 
 @NgModule({
     declarations: [
         CityDialogComponent,
         ConfirmDialogComponent,
         CuisineDialogComponent,
-        ManageCitiesDialogComponent
+        ManageCitiesDialogComponent,
+        ManageCuisinesDialogComponent
     ],
     imports: [
         CommonModule,

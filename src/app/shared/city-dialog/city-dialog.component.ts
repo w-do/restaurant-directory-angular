@@ -21,7 +21,7 @@ export class CityDialogComponent implements OnInit {
 
     ngOnInit() {
         this.dialogRef.updateSize('300px');
-        
+
         if (this.id !== null) {
             this.sharedService.getCity(this.id)
                 .subscribe(city => {
@@ -32,10 +32,10 @@ export class CityDialogComponent implements OnInit {
     }
 
     save() {
-        let request: Observable<any> = this.city.id === null
+        let request: Observable<any> = this.id === null
             ? this.sharedService.addCity(this.city.name)
-            : this.sharedService.updateCity(this.city.id, this.city.name);
+            : this.sharedService.updateCity(this.id, this.city.name);
 
-        request.subscribe(() => this.dialogRef.close(true));
+        request.subscribe(result => this.dialogRef.close(this.id === null ? result : true));
     }
 }
