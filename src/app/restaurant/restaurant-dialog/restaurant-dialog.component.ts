@@ -20,7 +20,7 @@ export class RestaurantDialogComponent implements OnInit {
     restaurant: Restaurant;
 
     constructor(public dialogRef: MatDialogRef<RestaurantDialogComponent>,
-        @Inject(MAT_DIALOG_DATA) public id: number,
+        @Inject(MAT_DIALOG_DATA) public id: string,
         private dialog: MatDialog,
         private restaurantService: RestaurantService,
         private sharedService: SharedService) {

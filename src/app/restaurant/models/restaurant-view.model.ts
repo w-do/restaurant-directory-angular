@@ -1,7 +1,7 @@
 import { ParkingLot } from './parking-lot.enum';
 
 export class RestaurantView {
-    id: number;
+    id: string;
     city: string;
     cuisines: string;
     name: string;

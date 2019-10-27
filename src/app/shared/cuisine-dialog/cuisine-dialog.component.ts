@@ -14,7 +14,7 @@ export class CuisineDialogComponent implements OnInit {
     name: string;
 
     constructor(public dialogRef: MatDialogRef<CuisineDialogComponent>,
-        @Inject(MAT_DIALOG_DATA) public id: number,
+        @Inject(MAT_DIALOG_DATA) public id: string,
         private sharedService: SharedService) {
         this.cuisine = new Cuisine();
     }

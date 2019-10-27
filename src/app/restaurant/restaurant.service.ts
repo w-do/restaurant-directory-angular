@@ -16,15 +16,15 @@ export class RestaurantService {
         this.url = appConfig.get('apiUrl') + '/restaurant';
     }
 
-    addRestaurant(restaurant: Restaurant): Observable<number> {
+    addRestaurant(restaurant: Restaurant): Observable<string> {
         return this.http.post(this.url, restaurant)
             .pipe(
-                map(response => <number>response),
+                map(response => <string>response),
                 catchError(this.throw)
             );
     }
 
-    deleteRestaurant(id: number): Observable<Response> {
+    deleteRestaurant(id: string): Observable<Response> {
         return this.http.delete(this.url + '/' + id)
             .pipe(
                 map(response => <Response>response),
@@ -32,7 +32,7 @@ export class RestaurantService {
             );
     }
 
-    getRestaurant(id: number): Observable<Restaurant> {
+    getRestaurant(id: string): Observable<Restaurant> {
         return this.http.get(this.url + '/' + id)
             .pipe(
                 map(response => <Restaurant>response),
@@ -48,7 +48,7 @@ export class RestaurantService {
             );
     }
 
-    updateRestaurant(id: number, restaurant: Restaurant): Observable<Response> {
+    updateRestaurant(id: string, restaurant: Restaurant): Observable<Response> {
         return this.http.put(this.url + '/' + id, restaurant)
             .pipe(
                 map(response => <Response>response),

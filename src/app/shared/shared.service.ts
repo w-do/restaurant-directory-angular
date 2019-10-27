@@ -16,23 +16,23 @@ export class SharedService {
         this.url = appConfig.get('apiUrl');
     }
 
-    addCity(cityName: string): Observable<number> {
+    addCity(cityName: string): Observable<string> {
         return this.http.post(this.url + '/city', { name: cityName })
             .pipe(
-                map(response => <number>response),
+                map(response => <string>response),
                 catchError(this.throw)
             );
     }
 
-    addCuisine(cuisineName: string): Observable<number> {
+    addCuisine(cuisineName: string): Observable<string> {
         return this.http.post(this.url + '/cuisine', { name: cuisineName })
             .pipe(
-                map(response => <number>response),
+                map(response => <string>response),
                 catchError(this.throw)
             );
     }
 
-    deleteCity(id: number): Observable<Response> {
+    deleteCity(id: string): Observable<Response> {
         return this.http.delete(this.url + '/city/' + id)
             .pipe(
                 map(response => <Response>response),
@@ -40,7 +40,7 @@ export class SharedService {
             );
     }
 
-    deleteCuisine(id: number): Observable<Response> {
+    deleteCuisine(id: string): Observable<Response> {
         return this.http.delete(this.url + '/cuisine/' + id)
             .pipe(
                 map(response => <Response>response),
@@ -56,7 +56,7 @@ export class SharedService {
             );
     }
 
-    getCity(id: number): Observable<City> {
+    getCity(id: string): Observable<City> {
         return this.http.get(this.url + '/city/' + id)
             .pipe(
                 map(response => <City>response),
@@ -64,7 +64,7 @@ export class SharedService {
             );
     }
 
-    getCityRestaurants(id: number): Observable<string[]> {
+    getCityRestaurants(id: string): Observable<string[]> {
         return this.http.get(this.url + '/city/' + id + '/restaurants')
             .pipe(
                 map(response => <string[]>response),
@@ -72,7 +72,7 @@ export class SharedService {
             );
     }
 
-    getCuisine(id: number): Observable<Cuisine> {
+    getCuisine(id: string): Observable<Cuisine> {
         return this.http.get(this.url + '/cuisine/' + id)
             .pipe(
                 map(response => <Cuisine>response),
@@ -80,7 +80,7 @@ export class SharedService {
             );
     }
 
-    getCuisineRestaurants(id: number): Observable<string[]> {
+    getCuisineRestaurants(id: string): Observable<string[]> {
         return this.http.get(this.url + '/cuisine/' + id + '/restaurants')
             .pipe(
                 map(response => <string[]>response),
@@ -96,7 +96,7 @@ export class SharedService {
             );
     }
 
-    updateCity(id: number, name: string): Observable<Response> {
+    updateCity(id: string, name: string): Observable<Response> {
         return this.http.put(this.url + '/city/' + id, { name: name })
             .pipe(
                 map(response => <Response>response),
@@ -104,7 +104,7 @@ export class SharedService {
             );
     }
 
-    updateCuisine(id: number, name: string): Observable<Response> {
+    updateCuisine(id: string, name: string): Observable<Response> {
         return this.http.put(this.url + '/cuisine/' + id, { name: name })
             .pipe(
                 map(response => <Response>response),

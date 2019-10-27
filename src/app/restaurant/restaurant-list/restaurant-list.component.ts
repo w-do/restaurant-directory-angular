@@ -47,7 +47,7 @@ export class RestaurantListComponent implements OnInit {
         this.getRestaurants();
     }
 
-    delete(id: number) {
+    delete(id: string) {
         let config = {
             data: {
                 body: 'Are you sure you want to delete this restaurant?',
@@ -70,7 +70,7 @@ export class RestaurantListComponent implements OnInit {
             });
     }
 
-    openDialog(id: number) {
+    openDialog(id: string) {
         this.dialog.open(RestaurantDialogComponent, { data: id })
             .afterClosed()
             .subscribe(result => {

@@ -35,7 +35,7 @@ export class ManageCitiesDialogComponent implements OnInit {
             });
     }
 
-    delete(id: number) {
+    delete(id: string) {
         this.sharedService.getCityRestaurants(id)
             .subscribe(restaurants => {
                 let config = {
@@ -66,7 +66,7 @@ export class ManageCitiesDialogComponent implements OnInit {
             });
     }
 
-    update(id: number) {
+    update(id: string) {
         this.dialog.open(CityDialogComponent, { data: id })
             .afterClosed()
             .subscribe(result => {

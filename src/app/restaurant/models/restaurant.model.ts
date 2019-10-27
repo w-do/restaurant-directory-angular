@@ -1,9 +1,9 @@
 import { ParkingLot } from './parking-lot.enum';
 
 export class Restaurant {
-    id: number;
-    cityId?: number;
-    cuisineIds: number[];
+    id: string;
+    cityId?: string;
+    cuisineIds: string[];
     name: string;
     notes: string;
     parkingLot?: ParkingLot;

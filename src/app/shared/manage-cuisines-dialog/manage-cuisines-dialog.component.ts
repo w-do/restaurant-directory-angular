@@ -35,7 +35,7 @@ export class ManageCuisinesDialogComponent implements OnInit {
             });
     }
 
-    delete(id: number) {
+    delete(id: string) {
         this.sharedService.getCuisineRestaurants(id)
             .subscribe(restaurants => {
                 let config = {
@@ -66,7 +66,7 @@ export class ManageCuisinesDialogComponent implements OnInit {
             });
     }
 
-    update(id: number) {
+    update(id: string) {
         this.dialog.open(CuisineDialogComponent, { data: id })
             .afterClosed()
             .subscribe(result => {
