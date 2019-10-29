@@ -9,8 +9,7 @@ import { ManageCuisinesDialogComponent } from './shared/manage-cuisines-dialog/m
     styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-    title = 'restaurant-directory-angular';
-
+    
     constructor(private dialog: MatDialog) { }
 
     manageCities() {
