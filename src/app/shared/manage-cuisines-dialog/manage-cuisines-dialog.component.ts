@@ -13,10 +13,12 @@ import { SharedService } from '../shared.service';
 export class ManageCuisinesDialogComponent implements OnInit {
     cuisines: Cuisine[];
     columns: string[];
+    private change: boolean;
 
-    constructor(public dialogRef: MatDialogRef<ManageCuisinesDialogComponent>,
-        private dialog: MatDialog,
+    constructor(private dialog: MatDialog,
+        private dialogRef: MatDialogRef<ManageCuisinesDialogComponent>,
         private sharedService: SharedService) {
+        this.change = false;
         this.columns = ['actions', 'name'];
     }
 
@@ -33,6 +35,10 @@ export class ManageCuisinesDialogComponent implements OnInit {
                     this.getCuisines();
                 }
             });
+    }
+
+    close() {
+        this.dialogRef.close(this.change);
     }
 
     delete(id: string) {
@@ -60,7 +66,10 @@ export class ManageCuisinesDialogComponent implements OnInit {
                     .subscribe(result => {
                         if (result) {
                             this.sharedService.deleteCuisine(id)
-                                .subscribe(() => this.getCuisines());
+                                .subscribe(() => {
+                                    this.change = true;
+                                    this.getCuisines();
+                                });
                         }
                     });
             });
@@ -71,6 +80,7 @@ export class ManageCuisinesDialogComponent implements OnInit {
             .afterClosed()
             .subscribe(result => {
                 if (result) {
+                    this.change = true;
                     this.getCuisines();
                 }
             });

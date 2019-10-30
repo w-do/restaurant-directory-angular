@@ -13,10 +13,12 @@ import { SharedService } from '../shared.service';
 export class ManageCitiesDialogComponent implements OnInit {
     cities: City[];
     columns: string[];
+    private change: boolean;
 
-    constructor(public dialogRef: MatDialogRef<ManageCitiesDialogComponent>,
-        private dialog: MatDialog,
+    constructor(private dialog: MatDialog,
+        private dialogRef: MatDialogRef<ManageCitiesDialogComponent>,
         private sharedService: SharedService) {
+        this.change = false;
         this.columns = ['actions', 'name'];
     }
 
@@ -33,6 +35,10 @@ export class ManageCitiesDialogComponent implements OnInit {
                     this.getCities();
                 }
             });
+    }
+
+    close() {
+        this.dialogRef.close(this.change);
     }
 
     delete(id: string) {
@@ -60,7 +66,10 @@ export class ManageCitiesDialogComponent implements OnInit {
                     .subscribe(result => {
                         if (result) {
                             this.sharedService.deleteCity(id)
-                                .subscribe(() => this.getCities());
+                                .subscribe(() => {
+                                    this.change = true;
+                                    this.getCities();
+                                });
                         }
                     });
             });
@@ -71,6 +80,7 @@ export class ManageCitiesDialogComponent implements OnInit {
             .afterClosed()
             .subscribe(result => {
                 if (result) {
+                    this.change = true;
                     this.getCities();
                 }
             });

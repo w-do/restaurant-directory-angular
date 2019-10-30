@@ -1,7 +1,9 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
+import { Subscription } from 'rxjs';
+import { ChangeNotificationService } from 'src/app/shared/change-notification.service';
 import { ConfirmDialogComponent } from '../../shared/confirm-dialog/confirm-dialog.component';
 import { City } from '../../shared/models/city.model';
 import { Cuisine } from '../../shared/models/cuisine.model';
@@ -15,7 +17,7 @@ import { RestaurantService } from '../restaurant.service';
     templateUrl: './restaurant-list.component.html',
     styleUrls: ['./restaurant-list.component.css']
 })
-export class RestaurantListComponent implements OnInit {
+export class RestaurantListComponent implements OnInit, OnDestroy {
     @ViewChild(MatSort, { static: true }) sort: MatSort;
     cities: City[];
     columns: string[];
@@ -24,8 +26,10 @@ export class RestaurantListComponent implements OnInit {
     filterIsActive: boolean;
     filterIsVisible: boolean;
     restaurants: MatTableDataSource<RestaurantView>;
+    private changeSubscription: Subscription;
 
-    constructor(private dialog: MatDialog,
+    constructor(private changeNotificationService: ChangeNotificationService,
+        private dialog: MatDialog,
         private restaurantService: RestaurantService,
         private sharedService: SharedService) {
         this.columns = ['actions', 'tried', 'name', 'city', 'cuisines', 'parkingLot', 'notes'];
@@ -34,6 +38,16 @@ export class RestaurantListComponent implements OnInit {
 
     ngOnInit() {
         this.getRestaurants();
+        this.changeSubscription = this.changeNotificationService.getChange()
+            .subscribe(change => {
+                if (change) {
+                    this.getRestaurants();
+                }
+            });
+    }
+
+    ngOnDestroy() {
+        this.changeSubscription.unsubscribe();
     }
 
     applyFilters() {
