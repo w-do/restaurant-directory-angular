@@ -69,7 +69,7 @@
             <th *matHeaderCellDef mat-header-cell mat-sort-header>Name</th>
             <td *matCellDef="let restaurant" mat-cell>
                 {{restaurant.name}}
-                <a *ngIf="restaurant.yelp" color="primary" href="{{restaurant.yelp}}" mat-icon-button>
+                <a *ngIf="restaurant.yelp" color="primary" href="{{restaurant.yelp}}" mat-icon-button target="_">
                     <i class="fa fa-yelp" aria-label="Yelp link"></i>
                 </a>
             </td>
